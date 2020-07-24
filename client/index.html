@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="google-signin-client_id" content="176490311803-ac4vu0n1rjcb5f3ps8em9fckq4r081ks.apps.googleusercontent.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<title>My Fancy Todo Tracker </title>
+	<style>
+		.list-group-item  {
+			background: #f5bd82
+		}
+	</style>
+  </head>
+  <body style="background-color:#e6b367;">
+
+	<!-- register-page -->
+	<section class="register-page">
+		<div class="container mt-5">
+			<h2 class="text-center">Register new user</h2>
+			<form onsubmit="register(event)" id="register">
+				<div class="form-group">
+					<label for="name-reg">Email</label>
+					<input type="text" class="form-control" id="email-reg">
+				  </div>
+				<div class="form-group">
+				  <label for="email-reg">Password</label>
+				  <input type="text" class="form-control" id="password-reg">
+				</div>
+				<button type="submit" class="btn btn-primary">Submit</button>
+				<button onclick="back()" class="btn btn-warning ml-3">Back</button>
+			</form>
+		  </div>
+	</section>
+
+	<!-- login page -->
+	<section class="login-page">
+		<div class="container h-100">
+			<div class="d-flex justify-content-center h-100">
+				<div class="user_card">
+					<div class="d-flex justify-content-center">
+						<div class="brand_logo_container mb-3 mt-3">
+							<img style="width: 100px;" src="img/register.png" class="brand_logo" alt="Logo">
+						</div>
+					</div>
+					<div class="d-flex justify-content-center form_container">
+						<form onsubmit="login(event)">
+							<!-- <form id="login"> -->
+							<div class="input-group mb-3" style="border: 5px solid #dbab32; border-radius: 9px;">
+								<div class="input-group-append">
+									<span class="input-group-text"><i class="fas fa-user"></i></span>
+								</div>
+								<input type="text" name="" class="form-control input_user" value="" placeholder="email" id="email">
+							</div>
+							<div class="input-group mb-2" style="border: 5px solid #dbab32; border-radius: 9px">
+								<div class="input-group-append">
+									<span class="input-group-text"><i class="fas fa-key"></i></span>
+								</div>
+								<input type="password" name="" class="form-control input_pass" value="" placeholder="password" id="password">
+							</div>
+							<div class="form-group" >
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input" id="customControlInline">
+									<label class="custom-control-label" for="customControlInline">Remember me</label>
+								</div>
+							</div>
+							<div class="d-flex justify-content-center mt-3 login_container">
+						 <button type="submit" name="button" class="btn btn-success">Login</button>
+						 <div class="g-signin2 ml-3" data-onsuccess="onSignIn"></div>
+					   </div>
+						</form>
+					</div>
+			
+					<div class="mt-4">
+						<div class="d-flex justify-content-center links">
+							Don't have an account? <a href="#" onclick="toRegister(event)" class="ml-2">Sign Up</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- home page -->
+    <section class="home-page">
+		<div class="container mt-5 todos-data">
+			<div class="row">
+				<div class="col">
+					<button onclick="addTodos()" class="btn btn-success">Add Your Task</button>
+				</div>
+				<div class="col">
+					<button onclick="seeWeather()" class="btn btn-success">Want to Know Weather ?</button>
+				</div>
+				<div class="col">
+					<div class="float-right">
+						<button onclick="logout()" class="btn btn-danger">Log Out</button>
+					</div>
+				</div>
+			</div>
+			<div>
+				<table class="table table-hover mt-2">
+					<thead>
+						  <tr style="background-color: #f5bd82;">
+							<th scope="col">Title</th>
+							<th scope="col">Description</th>
+							<th scope="col">Status</th>
+							<th scope="col">Date</th>
+							<th scope="col">Action</th>
+						  </tr>
+						  <tbody class="table-data">
+							  
+						  </tbody>
+					</thead>
+				</table>
+			</div>
+		</div>
+		<footer>
+			<p class="text-center">&copy; Created by: Hacktiv8 - Samirudin</p>
+		  </footer>
+	</section>   
+	
+	<!-- add todos page -->
+	<section>
+		<div class="add-page">
+			<div class="container mt-5">
+				<form onsubmit="addNewTodo(event)">
+					<div class="form-group" >
+					  <label for="title">Title</label>
+					  <input type="text" class="form-control" id="title" placeholder="the title of your new task" style="border: 5px solid #dbab32; border-radius: 9px">
+					</div>
+					<div class="form-group" >
+						<label for="description">Decription</label>
+						<textarea class="form-control" id="description" placeholder="description of your task" rows="3" style="border: 5px solid #dbab32; border-radius: 9px"></textarea>
+					</div>
+					<div class="form-group" >
+						<label for="status">Status</label>
+						<input type="text" class="form-control" id="status" placeholder="status of your task (done/not yet)" style="border: 5px solid #dbab32; border-radius: 9px">
+					</div>
+					<div class="form-group" >
+						<label for="date">Due_date</label>
+						<input type="text" class="form-control" id="date" placeholder="when you do this task" style="border: 5px solid #dbab32; border-radius: 9px">
+					</div>
+					<button type="submit" class="btn btn-primary">Submit</button>
+					<button type="button" class="btn btn-warning ml-3" onclick="toHome()">Back</button>
+				  </form>
+			  </div>
+		</div>
+	</section>
+
+	<!-- update-todos -->
+	<section>
+		<div class="edit-page">
+			<div class="container mt-5">
+				<form onsubmit="updateTodo()">
+					<div class="form-group" >
+					  <label for="title">Title</label>
+					  <input type="text" class="form-control" id="edit-title" placeholder="the title of your new task" style="border: 5px solid #dbab32; border-radius: 9px">
+					</div>
+					<div class="form-group" >
+						<label for="description">Decription</label>
+						<textarea class="form-control" id="edit-description" placeholder="description of your task" rows="3" style="border: 5px solid #dbab32; border-radius: 9px"></textarea>
+					</div>
+					<div class="form-group" >
+						<label for="status">Status</label>
+						<input type="text" class="form-control" id="edit-status" placeholder="status of your task (done/not yet)" style="border: 5px solid #dbab32; border-radius: 9px">
+					</div>
+					<div class="form-group" >
+						<label for="date">Due_date</label>
+						<input type="text" class="form-control" id="edit-date" placeholder="when you do this task" style="border: 5px solid #dbab32; border-radius: 9px">
+					</div>
+					<button type="submit" class="btn btn-primary">Submit</button>
+					<button type="button" class="btn btn-warning ml-3" onclick="toHome()">Back</button>
+				  </form>
+			  </div>
+		</div>
+	</section>
+
+	<section class="weather-page">
+		<div class="container d-flex justify-content-center mt-5 mb-5">
+		  <form onsubmit="searchWeather(event)" id="search-form" class="form-inline">
+			<div class="form-group mx-sm-3 mb-2">
+			  <input type="text" class="form-control" id="city-weather" placeholder="your city">
+			  <input type="submit" class="btn btn-success ml-3" value="search">
+			</div>
+		  </form>
+			<div class="card" style="width: 18rem; background-color: #f5bd82;">
+				<img src="./img/icon.png" class="card-img-top" alt="...">
+				<div class="weather">
+					<div class="card-body">
+					  <div class="weather-data">
+						
+					  </div>
+					<div class="card-body">
+					  <button class="btn btn-success" onclick="toHome()">Back</button>
+					</div>
+				</div>
+			  </div>
+		  </div>
+		</div>
+	  </section>
+
+	<!-- Optional JavaScript -->
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+	<script src="main.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  </body>
+</html>
