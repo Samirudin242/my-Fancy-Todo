@@ -98,17 +98,19 @@ class UserController {
             email : req.body.email,
             password: req.body.password
         }
-
-        User.findOne({where:{email: user.email}})
+        console.log("masuk")
+        User.findOne({where:{email: req.body.email}})
         .then(data => {
+        console.log(data)
             if(data && compare(user.password, data.password)) {
-                const token = jwt.sign({id: data.id, email: user.email}, process.env.SECRET)
+                const token = jwt.sign({id: data.id, email: user.email}, "secret")
                 res.status(201).json({token})
             } else {
                 res.status(400).json({status:400, message:`Invalid password or email`})
             }
         })
         .catch(err => {
+        console.log("masukkkkkk")
             res.status(500).json({status:500, message:`Server Error`})
         })
     }

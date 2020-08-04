@@ -24,27 +24,25 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    status: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: {
-          args : true,
-          msg: `Data can't be empty`
-        }
-      }
-    },
-    due_date: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: {
-          args : true,
-          msg: `Data can't be empty`
-        }
+    due_date: DataTypes.STRING,
+    status: DataTypes.STRING,
+    // due_date: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    //   validate: {
+    //     notEmpty: {
+    //       args : true,
+    //       msg: `Data can't be empty`
+    //     }
+    //   }
+    // }
+  }, {sequelize, 
+    hooks : {
+      beforeCreate: (user) => {
+        user.status = "not yet"
       }
     }
-  }, {sequelize});
+  });
   Todo.associate = function(models) {
     // associations can be defined here
     Todo.belongsTo(models.User)

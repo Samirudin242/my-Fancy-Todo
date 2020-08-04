@@ -85,45 +85,121 @@
 	</section>
 
 	<!-- home page -->
-    <section class="home-page">
-		<div class="container mt-5 todos-data">
-			<div class="row">
-				<div class="col">
-					<button onclick="addTodos()" class="btn btn-success">Add Your Task</button>
+<section class="home-page">
+	<nav class="navbar navbar-expand-lg navbar-light" style="background-color:#f5bd82;">
+		<a class="navbar-brand nav-link disabled" href="#"><img src="./img/hacktiv8.png" style="width: 80px;" alt=""></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+			<li class="nav-item active">
+				<a class="nav-link" href="#" onclick="fetchTodos()">Home <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" onclick="seeWeather()" href="#">Weather</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" onclick="logout()" href="#">Log Out</a>
+			</li>
+			</ul>
+		</div>
+		</nav>
+	<div class="container mt-5 todos-data">
+		<div class="d-flex flex-row">
+			<h3 style="width: 80px;">Today </h3> 
+			<p id="date" style="width: 100px; margin-top: 8px; margin-left: 2px;"></p>
+		</div>
+		<div>
+		
+		<div class="row">
+			<div class="col-8">
+				<div class="task">
+			
 				</div>
-				<div class="col">
-					<button onclick="seeWeather()" class="btn btn-success">Want to Know Weather ?</button>
+				<div class="d-flex flex-row">
+					<Button type="button" class="btn btn-outline-success mt-3" onclick="addTask()">
+						<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+							<path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"/>
+							<path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"/>
+							</svg>
+							Add Task
+					</Button>
+				</div>	
+				<div class="form-task">
+					<form onsubmit="addNewTodo(event)">
+						<div class="form-row mt-3">
+						<div class="form-group col-6">
+							<input style="width: 300px;" type="text" class="form-control" id="title-task" placeholder="Title">
+						</div>
+						<div class="form-group col-6">
+							<input style="width: 300px; margin-left: 0.5cm;" type="date" class="form-control" id="date-task" placeholder="Date">
+						</div>
+						</div>
+						<div class="form-group mt-1">
+						<textarea style="width: 700px;" class="form-control" id="description-task" rows="3" placeholder="Description"></textarea>
+						<div class="mt-2">
+							<button type="submit" class="btn btn-success">Add Task</button>
+							<button type="button" class="btn btn-outline-danger" onclick="toHome()">Cancel</button>
+						</div>
+						</div>
+					</form>
 				</div>
-				<div class="col">
-					<div class="float-right">
-						<button onclick="logout()" class="btn btn-danger">Log Out</button>
-					</div>
+				<div class="form-taskEdit">
+					<form onsubmit="updateTodo()">
+						<div class="form-row mt-3">
+						<div class="form-group col-6">
+							<input style="width: 300px;" type="text" class="form-control" id="title-taskEdit" placeholder="Title">
+						</div>
+						<div class="form-group col-6">
+							<input style="width: 300px; margin-left: 0.5cm;" type="date" class="form-control" id="date-taskEdit" placeholder="Date">
+						</div>
+						</div>
+						<div class="form-group mt-1">
+						<textarea style="width: 700px;" class="form-control" id="description-taskEdit" rows="3" placeholder="Description"></textarea>
+						<div class="mt-2">
+							<button type="submit" class="btn btn-success">Edit Task</button>
+							<button type="button" class="btn btn-outline-danger" onclick="toHome()">Cancel</button>
+						</div>
+						</div>
+					</form>
 				</div>
 			</div>
-			<div>
-				<table class="table table-hover mt-2">
-					<thead>
-						  <tr style="background-color: #f5bd82;">
-							<th scope="col">Title</th>
-							<th scope="col">Description</th>
-							<th scope="col">Status</th>
-							<th scope="col">Date</th>
-							<th scope="col">Action</th>
-						  </tr>
-						  <tbody class="table-data">
-							  
-						  </tbody>
-					</thead>
-				</table>
+			<div class="col-3">
+				<div class="weather-page">
+					<div class="mb-5 ml-7">
+						<form onsubmit="searchWeather(event)" id="search-form" class="form-inline">
+						  <div class="form-group mx-sm-3 mb-2">
+							<input type="text" class="form-control" id="city-weather" placeholder="your city">
+							<input type="submit" class="btn btn-success ml-3" value="search">
+						  </div>
+						</form>
+						  <div class="card" style="width: 18rem; background-color: #f5bd82;">
+							  <img src="./img/icon.png" class="card-img-top" alt="...">
+							  <div class="weather">
+								  <div class="card-body">
+									<div class="weather-data">
+									  
+									</div>
+								  <div class="card-body">
+									<button class="btn btn-success" onclick="toHome()">close</button>
+								  </div>
+							  </div>
+							</div>
+						</div>
+					  </div>
+				</div>
 			</div>
 		</div>
-		<footer>
-			<p class="text-center">&copy; Created by: Hacktiv8 - Samirudin</p>
-		  </footer>
-	</section>   
+
+		</div>
+	<footer class="mt-5">
+		<p class="text-center">&copy; Created by: Hacktiv8 - Samirudin</p>
+		</footer>
+</section>   
 	
 	<!-- add todos page -->
-	<section>
+	<!-- <section>
 		<div class="add-page">
 			<div class="container mt-5">
 				<form onsubmit="addNewTodo(event)">
@@ -148,7 +224,7 @@
 				  </form>
 			  </div>
 		</div>
-	</section>
+	</section> -->
 
 	<!-- update-todos -->
 	<section>
@@ -178,29 +254,6 @@
 		</div>
 	</section>
 
-	<section class="weather-page">
-		<div class="container d-flex justify-content-center mt-5 mb-5">
-		  <form onsubmit="searchWeather(event)" id="search-form" class="form-inline">
-			<div class="form-group mx-sm-3 mb-2">
-			  <input type="text" class="form-control" id="city-weather" placeholder="your city">
-			  <input type="submit" class="btn btn-success ml-3" value="search">
-			</div>
-		  </form>
-			<div class="card" style="width: 18rem; background-color: #f5bd82;">
-				<img src="./img/icon.png" class="card-img-top" alt="...">
-				<div class="weather">
-					<div class="card-body">
-					  <div class="weather-data">
-						
-					  </div>
-					<div class="card-body">
-					  <button class="btn btn-success" onclick="toHome()">Back</button>
-					</div>
-				</div>
-			  </div>
-		  </div>
-		</div>
-	  </section>
 
 	<!-- Optional JavaScript -->
 	<script src="https://apis.google.com/js/platform.js" async defer></script>

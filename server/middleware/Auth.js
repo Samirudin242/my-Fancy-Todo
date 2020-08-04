@@ -10,7 +10,7 @@ class Authentication {
             next({name: 'TOKEN_ERROR'})
             // res.status(400).json({message:`Token not found`})
         } else if(acces_token) {
-            let decode = jwt.verify(acces_token, process.env.SECRET)
+            let decode = jwt.verify(acces_token, "secret")
             req.userData = decode
             // console.log(decode);
             

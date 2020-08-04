@@ -3,7 +3,7 @@ const axios = require('axios')
 class WeatherController{
 
     static getWeather(req, res, next) {
-        const key = process.env.WEATHER_KEY
+        const key = "9c897f2e6d364c162194bac0f7bf6bc9"
         const {city} = req.params
         // const city = req.body.city
         axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`)

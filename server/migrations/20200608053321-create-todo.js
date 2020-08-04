@@ -14,10 +14,10 @@ module.exports = {
       description: {
         type: Sequelize.STRING
       },
-      status: {
+      due_date: {
         type: Sequelize.STRING
       },
-      due_date: {
+      status: {
         type: Sequelize.STRING
       },
       createdAt: {
